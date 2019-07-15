@@ -16,6 +16,7 @@ Compile this project using the standard cmake routine:
     cmake ..
     make
 ```
+The executables are located under `build/bin`.
 
 ## See also:
 

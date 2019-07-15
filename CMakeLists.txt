@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.1)
 project(IGeL)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
-set(CMAKE_BUILD_TYPE Debug)
 
 # libigl
 option(BUILD_SHARED_LIBS             "build shared libraries" ON)
@@ -16,7 +15,7 @@ option(LIBIGL_WITH_OPENGL_GLFW_IMGUI       "Use ImGUI"           ON)
 
 find_package(LIBIGL REQUIRED QUIET)
 
-# Add your project files
+set(EXECUTABLE_OUTPUT_PATH "bin")
 
 add_executable(offset_surface src/offset_surface.cpp)
 add_executable(center src/center.cpp)
