@@ -1,10 +1,9 @@
 # IGeL
 
-My collection of handy commandline utils for geometry processing using the awesome [libigl
+My collection of handy command line tools for geometry processing using the awesome [libigl
 tutorial](https://github.com/libigl/libigl).
 See also the [libigl
 tutorial](https://libigl.github.io/libigl/tutorial/).
-
 
 ## Run
 
@@ -17,3 +16,9 @@ Compile this project using the standard cmake routine:
     cmake ..
     make
 ```
+
+## See also:
+
+https://github.com/xinyazhang/igl_utils
+
+https://github.com/the13fools/remesh-script
