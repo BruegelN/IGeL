@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.1)
 project(IGeL)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+set(CMAKE_BUILD_TYPE Release)
 
 # libigl
 option(BUILD_SHARED_LIBS             "build shared libraries" ON)
