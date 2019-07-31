@@ -9,7 +9,12 @@ int main(int argc, char *argv[])
     Eigen::MatrixXi F;
     Eigen::VectorXi C;
 
-    igl::read_triangle_mesh("/home/nico/git/libigl/tutorial/data/truck.obj", V, F);
+    std::string in_file,out_file;
+
+    in_file = "/home/nico/git/libigl/tutorial/data/truck.obj";
+    out_file = "out-part-";
+
+    igl::read_triangle_mesh(in_file, V, F);
 
     igl::facet_components(F,C);
     std::vector<Eigen::MatrixXi> vec;
@@ -33,6 +38,6 @@ int main(int argc, char *argv[])
         Eigen::MatrixXd v = V;
         Eigen::VectorXi I;
         igl::remove_unreferenced(Eigen::MatrixXd(v),Eigen::MatrixXi(f),v,f,I);
-        igl::write_triangle_mesh("out-part-"+std::to_string(i)+".stl", v, f);
+        igl::write_triangle_mesh(out_file+std::to_string(i)+".stl", v, f);
     }
 }
