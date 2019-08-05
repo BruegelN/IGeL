@@ -5,7 +5,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 set(CMAKE_BUILD_TYPE Release)
 
 # libigl
-option(LIBIGL_USE_STATIC_LIBRARY     "Use libIGL as static librarie" OFF)
+option(LIBIGL_USE_STATIC_LIBRARY     "Use libIGL as static librarie" ON)
 option(BUILD_SHARED_LIBS             "build shared libraries" ON)
 option(LIBIGL_USE_STATIC_LIBRARY     "Use libIGL as static librarie" OFF)
 option(LIBIGL_BUILD_PYTHON           "Build libigl python bindings" OFF)
