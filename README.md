@@ -1,7 +1,6 @@
 # IGeL
 
-My collection of handy command line tools for geometry processing using the awesome [libigl
-tutorial](https://github.com/libigl/libigl).
+My collection of handy command line tools for geometry processing using the awesome [libigl](https://github.com/libigl/libigl).
 See also the [libigl
 tutorial](https://libigl.github.io/libigl/tutorial/).
 
