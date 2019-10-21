@@ -5,6 +5,7 @@
 #include <igl/boundary_loop.h>
 #include <igl/is_edge_manifold.h>
 #include <igl/remove_unreferenced.h>
+#include <igl/facet_components.h>
 
 #include <iostream>
 
@@ -12,7 +13,15 @@ int main(int argc, char* argv[])
 {
     Eigen::MatrixXd V;
     Eigen::MatrixXi F;
+    Eigen::VectorXi C;
+
     igl::read_triangle_mesh("/home/nico/git/libigl/tutorial/data/truck.obj", V,F);
+
+    {
+        // components
+        igl::facet_components(F,C);
+        std::cout << "#components: " << (1+C.maxCoeff())/* index statring at 0 */ << std::endl;
+    }
 
     int number_of_boundaries = 0;
 
