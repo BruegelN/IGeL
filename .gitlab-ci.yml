@@ -1,0 +1,13 @@
+# Use custom image to speed up builds  
+image: bruegeln/libigl-ci:latest
+
+
+build-example-project:
+  # Build the application
+  stage: build
+  script:
+    - git submodule --update --init
+    - mkdir build
+    - cd build
+    - cmake ../
+    - make -j2
