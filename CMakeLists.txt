@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.1)
 project(IGeL)
 
+include_directories(CLI11)
+
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 set(CMAKE_BUILD_TYPE Release)
 

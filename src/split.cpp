@@ -2,17 +2,21 @@
 #include <igl/write_triangle_mesh.h>
 #include <igl/facet_components.h>
 #include <igl/remove_unreferenced.h>
+#include "CLI11.hpp"
 
 int main(int argc, char *argv[])
 {
+    CLI::App app{"Split a triangle mesh containing multiple part into many files."};
+
     Eigen::MatrixXd V;
     Eigen::MatrixXi F;
     Eigen::VectorXi C;
-
     std::string in_file,out_file;
 
-    in_file = "/home/nico/git/libigl/tutorial/data/truck.obj";
-    out_file = "out-part-";
+    app.add_option("-i,--input", in_file, "The file you want to split into muliple files.")->required();
+    app.add_option("-o,--output", out_file, "Prefix of the output files. Default is 'out-part-'.");
+
+    CLI11_PARSE(app, argc, argv);
 
     igl::read_triangle_mesh(in_file, V, F);
 
