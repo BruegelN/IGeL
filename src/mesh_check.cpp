@@ -9,13 +9,22 @@
 
 #include <iostream>
 
+#include "CLI11.hpp"
+
 int main(int argc, char* argv[])
 {
+    CLI::App app{"Perform various checks on a triangle mesh and print the result."};
+
     Eigen::MatrixXd V;
     Eigen::MatrixXi F;
     Eigen::VectorXi C;
+    std::string in_file;
 
-    igl::read_triangle_mesh("/home/nico/git/libigl/tutorial/data/truck.obj", V,F);
+    app.add_option("-i,--input", in_file, "The triangle mesh you want to check.")->required();
+
+    CLI11_PARSE(app, argc, argv);
+
+    igl::read_triangle_mesh(in_file, V,F);
 
     {
         // components
