@@ -28,8 +28,5 @@ target_link_libraries(view igl::core igl::opengl igl::opengl_glfw igl::opengl_gl
 target_link_libraries(split igl::core)
 target_link_libraries(to-stl igl::core)
 target_link_libraries(mesh_check igl::core)
-
-if(LIBIGL_WITH_CGAL)
-	add_executable(offset_surface src/offset_surface.cpp)
-	target_link_libraries(offset_surface igl::core igl::cgal)
-endif(LIBIGL_WITH_CGAL)
+add_executable(offset_surface src/offset_surface.cpp)
+target_link_libraries(offset_surface igl::core)
