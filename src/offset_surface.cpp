@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
     int s = 100;
     igl::SignedDistanceType signed_distance_type = igl::SignedDistanceType::SIGNED_DISTANCE_TYPE_DEFAULT;
 
-    app.add_option("-i,--input", in_file, "The file you want to split into muliple files.")->required();
+    app.add_option("-i,--input", in_file, "The triangle mesh to want to calc an offset surface.")->required();
     app.add_option("-o,--output", out_file, "The (expanded/shrinked) output file. Default is 'out.obj'");
     app.add_option("-l,--isolevel", isolevel, "Iso level to extract (signed distance: negative inside)");
     app.add_option("-s,--grid-resolution", s, "Number of grid cells along longest side (controls resolution).");
