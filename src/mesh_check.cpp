@@ -4,6 +4,7 @@
 #include <igl/edges.h>
 #include <igl/boundary_loop.h>
 #include <igl/is_edge_manifold.h>
+#include <igl/is_vertex_manifold.h>
 #include <igl/remove_unreferenced.h>
 #include <igl/facet_components.h>
 
@@ -51,6 +52,19 @@ int main(int argc, char* argv[])
         else
         {
             std::cout << "The mesh is NOT an edge manifold!" << std::endl;
+        }
+    }
+
+    {
+        // vertex manifold
+        Eigen::VectorXi B;
+        if(igl::is_vertex_manifold(F,B))
+        {
+            std::cout << "The mesh is vertex manifold!" << std::endl;
+        }
+        else
+        {
+            std::cout << "The mesh is NOT vertex manifold!" << std::endl;
         }
     }
 
