@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
     Eigen::MatrixXd V;
     Eigen::MatrixXi F;
     Eigen::VectorXi C;
-    std::string in_file,out_file;
+    std::string in_file,out_file="out-part-";
 
     app.add_option("-i,--input", in_file, "The file you want to split into muliple files.")->required();
     app.add_option("-o,--output", out_file, "Prefix of the output files. Default is 'out-part-'.");
@@ -42,6 +42,6 @@ int main(int argc, char *argv[])
         Eigen::MatrixXd v = V;
         Eigen::VectorXi I;
         igl::remove_unreferenced(Eigen::MatrixXd(v),Eigen::MatrixXi(f),v,f,I);
-        igl::write_triangle_mesh(out_file+std::to_string(i)+".stl", v, f);
+        igl::write_triangle_mesh(out_file+std::to_string(i)+".obj", v, f);
     }
 }
