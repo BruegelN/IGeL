@@ -26,7 +26,10 @@ int main(int argc, char *argv[])
 
     CLI11_PARSE(app, argc, argv);
 
-    igl::read_triangle_mesh(in_file, V,F);
+    if(!igl::read_triangle_mesh(in_file, V,F))
+    {
+        return 1;
+    }
     igl::copyleft::offset_surface(V, F, isolevel,s , signed_distance_type, SV, SF, GV, side, S);
     igl::write_triangle_mesh(out_file, SV,SF);
 

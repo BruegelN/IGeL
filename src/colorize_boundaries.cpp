@@ -50,7 +50,10 @@ int main(int argc, char *argv[])
 
   CLI11_PARSE(app, argc, argv);
 
-  igl::readOBJ(in_file, V, TC, N, F, FTC, FN);
+  if(!igl::readOBJ(in_file, V, TC, N, F, FTC, FN))
+  {
+    return 1;
+  }
 
   // Init the viewer
   igl::opengl::glfw::Viewer viewer;

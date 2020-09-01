@@ -16,6 +16,9 @@ int main(int argc, char *argv[])
 
     CLI11_PARSE(app, argc, argv);
 
-    igl::read_triangle_mesh(in_file, V, F);
+    if(!igl::read_triangle_mesh(in_file, V,F))
+    {
+        return 1;
+    }
     igl::writeSTL(out_file, V, F);
 }
