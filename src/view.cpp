@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
   std::string in_file, screenshot_file = "screenshot.png";
 
   app.add_option("-i,--input", in_file, "The triangle mesh you want to view.")->required();
-  app.add_option("-s,--screenshot", in_file, "Screenshot file. Default is 'screenshot.png");
+  app.add_option("-s,--screenshot", screenshot_file, "Screenshot file. Default is 'screenshot.png");
 
   CLI11_PARSE(app, argc, argv);
 
@@ -40,6 +40,7 @@ int main(int argc, char *argv[])
     ImGui::Separator();
     if (ImGui::Button("Take screenshot (2560×1600)", ImVec2(-1, 0)))
     {
+      static size_t num_screenshot = 1;
       // Allocate temporary buffers
       Eigen::Matrix<unsigned char,Eigen::Dynamic,Eigen::Dynamic> R(2560,1600);
       Eigen::Matrix<unsigned char,Eigen::Dynamic,Eigen::Dynamic> G(2560,1600);
@@ -51,10 +52,12 @@ int main(int argc, char *argv[])
         viewer.data(),false,R,G,B,A);
 
       // Save it to a PNG
-      igl::png::writePNG(R,G,B,A,screenshot_file);
+      igl::png::writePNG(R,G,B,A,std::to_string(num_screenshot)+screenshot_file);
+      num_screenshot++;
     }
   };
 
+  viewer.core().background_color.setConstant(1);
   // Plot the mesh
   viewer.data().set_mesh(V, F);
   viewer.launch();
