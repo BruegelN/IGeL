@@ -20,7 +20,7 @@ option(LIBIGL_WITH_OPENGL_GLFW_IMGUI       "Use ImGUI"           ON)
 
 find_package(LIBIGL REQUIRED QUIET)
 
-set(EXECUTABLE_OUTPUT_PATH "bin")
+set(EXECUTABLE_OUTPUT_PATH "${CMAKE_BINARY_DIR}/bin")
 
 add_executable(center src/center.cpp)
 add_executable(view src/view.cpp)
@@ -39,3 +39,5 @@ target_link_libraries(mesh_check igl::core)
 target_link_libraries(offset_surface igl::core)
 target_link_libraries(colorize_boundaries igl::core igl::opengl igl::opengl_glfw igl::opengl_glfw_imgui igl::png)
 target_link_libraries(decimate igl::core)
+
+install(TARGETS center;view;split;to-stl;mesh_check;offset_surface;colorize_boundaries;decimate RUNTIME DESTINATION "~/.local/bin")
