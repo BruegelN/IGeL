@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
     float decimation_percent = 30;
 
     app.add_option("-i,--input", in_file, "The triangle mesh you want to convert.")->required();
-    app.add_option("-d,--desired_decimation", in_file, "The desired number of remaing faces after decimation (in percents of the input mesh).");
+    app.add_option("-d,--desired_decimation", decimation_percent, "The desired number of remaing faces after decimation (in percents of the input mesh).");
     app.add_option("-o,--output", out_file, "The decimated mesh. Default is 'decimated.obj'.");
 
     CLI11_PARSE(app, argc, argv);
@@ -26,8 +26,8 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    desired_num_faces = decimation_percent * F.rows();
+    desired_num_faces = (decimation_percent/100) * F.rows();
     igl::decimate(V,F,desired_num_faces,U,G,J,I);
-    igl::write_triangle_mesh("decimate.obj",U,G);
+    igl::write_triangle_mesh(out_file,U,G);
 
 }
