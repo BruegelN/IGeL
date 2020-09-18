@@ -5,6 +5,8 @@
 #include <igl/opengl/glfw/imgui/ImGuiHelpers.h>
 #include <imgui/imgui.h>
 #include <igl/png/writePNG.h>
+#include <igl/principal_curvature.h>
+#include <igl/colormap.h>
 #include <filesystem>
 #include "CLI11.hpp"
 
@@ -36,6 +38,20 @@ int main(int argc, char *argv[])
 
   const bool has_texture = [&]() -> bool { return (FTC.rows() == F.rows() && TC.rows() >= V.rows());}();
 
+  Eigen::VectorXd H,K;
+  Eigen::MatrixXd C;
+  Eigen::VectorXd PV1,PV2;
+  Eigen::VectorXd AbsMaxCurvature;
+  {
+    Eigen::MatrixXd PD1,PD2;
+    igl::principal_curvature(V,F,PD1,PD2,PV1,PV2);
+    // mean curvature
+    H = 0.5*(PV1+PV2);
+    // gaussian curvature
+    K = PV1.array()*PV2.array();
+    AbsMaxCurvature = PV1.cwiseAbs().cwiseMax(PV2.cwiseAbs());
+  }
+
   // Init the viewer
   igl::opengl::glfw::Viewer viewer;
 
@@ -49,6 +65,35 @@ int main(int argc, char *argv[])
     // Draw parent menu content
     menu.draw_viewer_menu();
     ImGui::Separator();
+    if (ImGui::CollapsingHeader("Curvature", ImGuiTreeNodeFlags_DefaultOpen))
+    {
+      static int e=-1;
+      if (ImGui::RadioButton("First Principal Curvature",&e,0))
+      {
+        igl::colormap(igl::COLOR_MAP_TYPE_TURBO,PV1,true,C);
+        viewer.data().set_colors(C);
+      }
+      if (ImGui::RadioButton("Second Principal Curvature",&e,1))
+      {
+        igl::colormap(igl::COLOR_MAP_TYPE_TURBO,PV2,true,C);
+        viewer.data().set_colors(C);
+      }
+      if (ImGui::RadioButton("Mean Curvature",&e,2))
+      {
+        igl::colormap(igl::COLOR_MAP_TYPE_TURBO,H,true,C);
+        viewer.data().set_colors(C);
+      }
+      if (ImGui::RadioButton("Gaussian Curvature",&e,3))
+      {
+        igl::colormap(igl::COLOR_MAP_TYPE_TURBO,K,true,C);
+        viewer.data().set_colors(C);
+      }
+      if (ImGui::RadioButton("Abs. Max. Curvature",&e,4))
+      {
+        igl::colormap(igl::COLOR_MAP_TYPE_TURBO,AbsMaxCurvature,true,C);
+        viewer.data().set_colors(C);
+      }
+    }
     if (ImGui::Button("Take screenshot (2560×1600)", ImVec2(-1, 0)))
     {
       static size_t num_screenshot = 1;
