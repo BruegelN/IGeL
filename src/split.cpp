@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
     Eigen::VectorXi C;
     std::string in_file,out_file="out-part-";
 
-    app.add_option("-i,--input", in_file, "The file you want to split into muliple files.")->required();
+    app.add_option("-i,--input", in_file, "The file you want to split into multiple files.")->required();
     app.add_option("-o,--output", out_file, "Prefix of the output files. Default is 'out-part-'.");
 
     CLI11_PARSE(app, argc, argv);
