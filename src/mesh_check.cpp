@@ -91,7 +91,6 @@ int main(int argc, char* argv[])
         if(0 != V_rows_diff)
         {
             std::cout << "You have " << V_rows_diff << " unreferenced vertices in your mesh!" << std::endl;
-            std::cout << J << std::endl;
         }
         else
         {
