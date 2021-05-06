@@ -1,7 +1,7 @@
 #include <igl/read_triangle_mesh.h>
 #include <igl/write_triangle_mesh.h>
 #include <igl/signed_distance.h>
-#include <igl/copyleft/offset_surface.h>
+#include <igl/offset_surface.h>
 #include "CLI11.hpp"
 
 int main(int argc, char *argv[])
@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
     {
         return 1;
     }
-    igl::copyleft::offset_surface(V, F, isolevel,s , signed_distance_type, SV, SF, GV, side, S);
+    igl::offset_surface(V, F, isolevel,s , signed_distance_type, SV, SF, GV, side, S);
     igl::write_triangle_mesh(out_file, SV,SF);
 
     return 0;
