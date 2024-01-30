@@ -8,7 +8,6 @@ tutorial](https://libigl.github.io/libigl/tutorial/).
 
 Compile this project using the standard cmake routine:
 ```
-    git clone --recurse-submodules https://github.com/BruegelN/IGeL.git
     cd IGeL
     mkdir build
     cd build

@@ -2,6 +2,7 @@
 #include <igl/write_triangle_mesh.h>
 #include <igl/facet_components.h>
 #include <igl/remove_unreferenced.h>
+#include <igl/slice_mask.h>
 #include "CLI11.hpp"
 
 int main(int argc, char *argv[])

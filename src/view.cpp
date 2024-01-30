@@ -4,7 +4,7 @@
 #include <igl/opengl/glfw/imgui/ImGuiMenu.h>
 #include <igl/opengl/glfw/imgui/ImGuiHelpers.h>
 #include <imgui/imgui.h>
-#include <igl/png/writePNG.h>
+#include <igl/stb/write_image.h>
 #include <igl/principal_curvature.h>
 #include <igl/colormap.h>
 #include <filesystem>
@@ -108,7 +108,7 @@ int main(int argc, char *argv[])
         viewer.data(),false,R,G,B,A);
 
       // Save it to a PNG
-      igl::png::writePNG(R,G,B,A,std::to_string(num_screenshot)+screenshot_file);
+      igl::stb::write_image(std::to_string(num_screenshot)+screenshot_file,R,G,B,A);
       num_screenshot++;
     }
     ImGui::Separator();

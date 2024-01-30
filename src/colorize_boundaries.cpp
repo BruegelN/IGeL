@@ -5,7 +5,7 @@
 #include <igl/boundary_facets.h>
 #include <igl/unique.h>
 #include <imgui/imgui.h>
-#include <igl/png/writePNG.h>
+#include <igl/stb/write_image.h>
 #include "CLI11.hpp"
 
   Eigen::MatrixXd V, TC, N, FN;
@@ -81,7 +81,7 @@ int main(int argc, char *argv[])
         viewer.data(),false,R,G,B,A);
 
       // Save it to a PNG
-      igl::png::writePNG(R,G,B,A,screenshot_file);
+      igl::stb::write_image(screenshot_file,R,G,B,A);
     }
   };
   Eigen::MatrixXd C(V.rows(), 3);
