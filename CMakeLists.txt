@@ -32,29 +32,29 @@ igl_include(stb)
 #igl_include(restricted triangle)
 
 add_executable(center src/center.cpp)
-# add_executable(view src/view.cpp)
+add_executable(view src/view.cpp)
 add_executable(split src/split.cpp)
 add_executable(to-stl src/to-stl.cpp)
 add_executable(mesh_check src/mesh_check.cpp)
 # add_executable(offset_surface src/offset_surface.cpp)
-# add_executable(colorize_boundaries src/colorize_boundaries.cpp)
+add_executable(colorize_boundaries src/colorize_boundaries.cpp)
 add_executable(decimate src/decimate.cpp)
 
 target_link_libraries(center igl::core)
-# target_link_libraries(view igl::core igl::opengl igl::glfw igl::imgui igl::stb)
+target_link_libraries(view igl::core igl::opengl igl::glfw igl::imgui igl::stb)
 target_link_libraries(split igl::core)
 target_link_libraries(to-stl igl::core)
 target_link_libraries(mesh_check igl::core)
 # target_link_libraries(offset_surface igl::core)
-# target_link_libraries(colorize_boundaries igl::core igl::opengl igl::glfw igl::imgui igl::stb)
+target_link_libraries(colorize_boundaries igl::core igl::opengl igl::glfw igl::imgui igl::stb)
 target_link_libraries(decimate igl::core)
 
 install(TARGETS center;
-                # view;
+                view;
                 split;
                 to-stl;
                 mesh_check;
                 # offset_surface;
-                # colorize_boundaries;
+                colorize_boundaries;
                 decimate 
                 RUNTIME DESTINATION "~/.local/bin")

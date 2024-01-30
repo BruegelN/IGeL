@@ -4,7 +4,6 @@
 #include <igl/opengl/glfw/imgui/ImGuiHelpers.h>
 #include <igl/boundary_facets.h>
 #include <igl/unique.h>
-#include <imgui/imgui.h>
 #include <igl/stb/write_image.h>
 #include "CLI11.hpp"
 
@@ -59,8 +58,11 @@ int main(int argc, char *argv[])
   igl::opengl::glfw::Viewer viewer;
 
   // Attach a menu plugin
+  igl::opengl::glfw::imgui::ImGuiPlugin imgui_plugin;
+  viewer.plugins.push_back(&imgui_plugin);
+
   igl::opengl::glfw::imgui::ImGuiMenu menu;
-  viewer.plugins.push_back(&menu);
+  imgui_plugin.widgets.push_back(&menu);
 
   // Add content to the default menu window
   menu.callback_draw_viewer_menu = [&]()

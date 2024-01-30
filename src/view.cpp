@@ -3,7 +3,6 @@
 #include <igl/opengl/glfw/Viewer.h>
 #include <igl/opengl/glfw/imgui/ImGuiMenu.h>
 #include <igl/opengl/glfw/imgui/ImGuiHelpers.h>
-#include <imgui/imgui.h>
 #include <igl/stb/write_image.h>
 #include <igl/principal_curvature.h>
 #include <igl/colormap.h>
@@ -56,8 +55,11 @@ int main(int argc, char *argv[])
   igl::opengl::glfw::Viewer viewer;
 
   // Attach a menu plugin
+  igl::opengl::glfw::imgui::ImGuiPlugin imgui_plugin;
+  viewer.plugins.push_back(&imgui_plugin);
+
   igl::opengl::glfw::imgui::ImGuiMenu menu;
-  viewer.plugins.push_back(&menu);
+  imgui_plugin.widgets.push_back(&menu);
 
   // Add content to the default menu window
   menu.callback_draw_viewer_menu = [&]()
