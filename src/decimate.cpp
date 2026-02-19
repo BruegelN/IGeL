@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
     float decimation_percent = 30;
 
     app.add_option("-i,--input", in_file, "The triangle mesh you want to convert.")->required();
-    app.add_option("-d,--desired_decimation", decimation_percent, "The desired number of remaing faces after decimation (in percents of the input mesh).");
+    app.add_option("-d,--desired_decimation", decimation_percent, "The desired number of remaining faces after decimation (in percents of the input mesh).");
     app.add_option("-o,--output", out_file, "The decimated mesh. Default is 'decimated.obj'.");
 
     CLI11_PARSE(app, argc, argv);
